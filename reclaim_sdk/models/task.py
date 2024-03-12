@@ -183,18 +183,21 @@ class ReclaimTask(ReclaimModel):
         self["timeChunksRequired"] = self._convert_to_timechunks(hours)
 
     @property
-    def priority(self) -> int:
+    def priority(self) -> str:
         """
-        Gets the priority of the task. A lower value means higher priority.
+        Gets the priority of the task. The value can be 'p1', 'p2', 'p3', or 'p4'.
         """
-        return self["index"]
+        return self._data.get("priority", None)
 
     @priority.setter
-    def priority(self, value: int) -> None:
+    def priority(self, value: str) -> None:
         """
-        Sets the priority of the task. A lower value means higher priority.
+        Sets the priority of the task. The value can be 'p1', 'p2', 'p3', or 'p4'.
+        Raises a ValueError if the value is not one of these.
         """
-        self["index"] = value
+        if value not in ['P1', 'P2', 'P3', 'P4']:
+            raise ValueError("Priority must be one of 'P1', 'P2', 'P3', 'P4'")
+        self._data["priority"] = value
 
     @property
     def events(self) -> list:

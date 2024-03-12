@@ -3,15 +3,19 @@
 Reclaim-SDK is an unofficial Python SDK for the Reclaim.ai API. It provides a simple and easy-to-use interface for managing tasks in Reclaim.ai. Please note that this SDK is not affiliated with Reclaim.ai in any way and was reverse-engineered from the Reclaim.ai web app. As a result, there may be bugs and the API may change at any time, and versioning is not possible.
 
 ## Features
-Currently, Reclaim-SDK only supports task management. However, as there might be an official SDK in the future, this SDK won't implement all features of the web app. 
+
+Currently, Reclaim-SDK only supports task management. However, as there might be an official SDK in the future, this SDK won't implement all features of the web app.
 
 ## Installation
+
 To install Reclaim-SDK, simply run the following command:
+
 ```bash
 pip install reclaim-sdk
 ```
 
 ## Configuration
+
 You can get an API key from [here](https://app.reclaim.ai/settings/developer).
 
 There are 3 ways to configure the token:
@@ -26,9 +30,11 @@ token = <YOUR_TOKEN>
 ```
 
 ## Usage
+
 All CRUD operations are supported, but for now only tasks are implemented. For the linked task events only the update of start and end times are supported. Nevertheless the API is designed to be easily extendable, by adding new classes for other resources. All "heavy lifting" is done in the `ReclaimModel` class, which is the base class for all other models.
 
 ### Creating a task
+
 ```python
 from reclaim_sdk.models.task import ReclaimTask
 from datetime import datetime, timedelta
@@ -61,6 +67,7 @@ task.save()
 ```
 
 ### Updating and searching tasks
+
 ```python
 from reclaim_sdk.models.task import ReclaimTask
 
@@ -83,6 +90,7 @@ task = ReclaimTask.get(12345)
 ```
 
 ### Deleting tasks
+
 ```python
 from reclaim_sdk.models.task import ReclaimTask
 
@@ -94,6 +102,7 @@ task.delete()
 ```
 
 ### Prioritizing tasks
+
 ```python
 from reclaim_sdk.models.task import ReclaimTask
 
@@ -109,6 +118,7 @@ ReclaimTask.prioritize_by_due()
 ```
 
 ### Change start and end date for task events
+
 ```python
 from reclaim_sdk.models.task import ReclaimTask
 
@@ -122,9 +132,11 @@ with task.events[0] as event:
 ```
 
 ## Contributing
+
 Contributions are welcome. Please open an issue or a pull request. If you want to add a new resource, please have a look at the `ReclaimModel` class and the `ReclaimTask` class. The `ReclaimTask` class is a good example of how to implement a new resource.
 
 ## License
+
 [MIT License](https://choosealicense.com/licenses/mit/)
 
 Copyright (c) 2022 Laurence Labusch
